@@ -41,6 +41,7 @@ if not os.path.exists(texres): os.makedirs(texres)
 comdir = 'submitted/'
 if not os.path.exists(comdir): os.makedirs(comdir)
 envi = ffhelper.env('default')
+#opens firefox to a blank page before starting submit loop
 browser = Browser('firefox', profile = envi)
 #Creates and prepares a directory for the texture, including finding the matching sd texture.
 def dirprep(img,name):
