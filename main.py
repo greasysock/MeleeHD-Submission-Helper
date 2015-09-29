@@ -19,7 +19,7 @@ with open(conf) as data_file:
 		inkscapeex = data['inkscape'][1]['linux']
 	if data['dropbox'][0]['enabled'] == 'true':
 		dropbx = True
-		db_token = data['dropbox'][1]['access_token']
+		db_token = data['dropbox'][1]['accesstoken']
 		client = dropbox.client.DropboxClient(db_token)
 	else:
 		dropbx = False
