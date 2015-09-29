@@ -4,9 +4,10 @@ import urllib
 
 #deviantart gallary id can be found here http://www.deviantart.com/developers/console/gallery/gallery_folders/
 gallery = 'F6004F98-1DAC-7805-065D-0319E61D5E3B'
-
+#this is a deviantArt api interpreter, it is what handles all deviantArt related requests in main.py. Most functions are self explanatory.
 site = 'https://www.deviantart.com/api/v1/oauth2'
 result = None
+#tests an access token for its validity.
 def test(access_token):
 	s = site + '/placebo'
 	payload = {'access_token': access_token}
