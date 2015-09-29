@@ -1,6 +1,6 @@
 import os
 import platform
-
+#Finds specified firefox profile, in our case 'default', and if it cannot find a profile named default, it creates a new one named default.
 def env(profile):
 	uos = platform.system()
 	mes = 'OS Detected: %s' % uos
