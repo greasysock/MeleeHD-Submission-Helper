@@ -175,6 +175,7 @@ for x in uploads:
 	svglocation = bldir + name + '/'+ name +'.svg'
 	svg = svghelp(svglocation)
 	#write out forum body
+	#note: to get % out, you need to put 2 %% as seen in the width parameter.
 	paragraph = '''Original Texture: %sx%s
 <div class="quote no_header"><div class="quote_body"><img alt="" src="%s" height"%s" width="%s" style="max-width:1600%%;">
 <div class="quote_clear"></div></div></div>HD Texture: %sx%s
