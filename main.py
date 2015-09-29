@@ -75,6 +75,7 @@ def dbupload(name):
 	return dburl
 #Handles uploading sd/hd texture to deviantArt, only returning src url.
 def daupload(img, name, aname):
+	#tests for a valid da token.
 	test = da.test(da_token)
 	if test == 'error':
 		print('deviantArt Token Invalid.')
@@ -164,7 +165,7 @@ for x in uploads:
 	nname = name + '.png'
 	sname = 'sd_' + nname
 	#upload to dropbox if it's enabled.
-	if dropbx = True:
+	if dropbx == True:
 		dblink = dbupload(name)
 	else:
 		dblink = None
@@ -200,7 +201,7 @@ Post created in %s seconds''' % (str(xdim),str(ydim),dasd,str(hdxdim),str(hdydim
 	browser.fill('subject', nname)
 	time.sleep(1)
 	#test for autosubmit status. copying bbcode to clipboard is not implemented yet, so if this is disabled, it pretty much makes the script useless.
-	if autosubmit = True:
+	if autosubmit == True:
 		with browser.get_iframe(2) as iframe:
 			iframe.execute_script("""
 
