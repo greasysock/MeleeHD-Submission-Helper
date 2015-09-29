@@ -190,6 +190,6 @@ document.getElementsByTagName('body')[0].innerHTML = forumBody;
 	pagename = nname + ' | Melee HD'
 	pagetitle = browser.title
 	while(pagetitle != pagename):
-			pagetitle = browser.title
-			time.sleep(1)
+		pagetitle = browser.title
+		time.sleep(1)
 	
