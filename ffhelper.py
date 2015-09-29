@@ -16,7 +16,7 @@ def env(profile):
 		ff = 'firefox'
 	else:
 		print(mes)
-		print('OS Not Compatible, contact @UncleIroh to fix this.')
+		print('OS Not Compatible.')
 		exit()
 	status = 0
 	for file in os.listdir(fd):
