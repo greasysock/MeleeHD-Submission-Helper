@@ -196,10 +196,8 @@ Post created in %s seconds''' % (str(xdim),str(ydim),dasd,str(hdxdim),str(hdydim
 	pblogin()
 	#parse paragraph to it's final form to be injected via javascript.
 	final = forumhelp(paragraph)
-	time.sleep(1)
 	#fill subject line of forum.
 	browser.fill('subject', nname)
-	time.sleep(1)
 	#test for autosubmit status. copying bbcode to clipboard is not implemented yet, so if this is disabled, it pretty much makes the script useless.
 	if autosubmit == True:
 		with browser.get_iframe(2) as iframe:
