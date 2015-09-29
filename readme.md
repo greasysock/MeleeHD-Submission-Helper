@@ -4,18 +4,29 @@ For more information, please visit http://meleehd.boards.net/thread/89/wip-melee
 
 Things completed so far:
 
+
 deviantArt api implemintation.
+
 Dropbox api implemintation.
+
 Inkscape implementation.
+
 Linux and Windows support.
+
 
 Things that need to be completed:
 
+
 Auto Forum Submission (WIP) - It's working about 75% of the time at the moment, due to unpredictable element changes in the page caused by advertisments, it can sometimes fill ad space rather than the forum.
+
 deviantArt access code creation and refreshing. - All access codes used in deviantArt must be renewed every 30 minutes.
+
 FileOptimizer Implementation.
+
 Error handling.
+
 Save built post as bbcode.
+
 
 How it'll work: 
 
