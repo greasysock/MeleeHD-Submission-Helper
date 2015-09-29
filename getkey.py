@@ -3,6 +3,8 @@ from uuid import uuid4
 import requests
 import requests.auth
 import urllib
+#This script is used to get access tokens from deviantart, to get this working, you must fill out CLIENT_ID and CLIENT_SECRET with your own via creating a new application at http://deviantart.com/developers
+#This is only a temporary solution until I'm finished developing the script, a solution to this would be to run a dedicated server to hand out access tokens.
 CLIENT_ID = ''
 CLIENT_SECRET = ''
 REDIRECT_URI = "http://127.0.0.1:5000/da_callback"
