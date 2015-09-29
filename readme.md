@@ -24,9 +24,11 @@ You'd put either either an ,.ai, .pdf, or .svg in a folder name 'submit' named a
 Requirements:
 
 Firefox
+
 Inkscape
+
 Python 2.7 and Modules: splinter, requests, flask, simplejson, dropbox
 
-Note: You must create an 'sdtextures' directory and fill it with textures from a dump, such as this one name texture source: https://mega.nz/#F!TYsjHBQC!R8cxMQ68yseVBf5Luf2gCA
+Note: You must create an 'sdtextures' directory and fill it with textures from a dump, this one has the vast majority of sd textures: https://mega.nz/#F!TYsjHBQC!R8cxMQ68yseVBf5Luf2gCA
 'packedtextures', 'submitted', and 'upload' will also need to be created in the root directory of the script in order for this script to work.
 You also must provide your own api keys from deviantart/dropbox.
