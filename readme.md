@@ -1,6 +1,6 @@
 Currently Under Development. Not in a working state.
 
-For more information, please visit http://meleehd.boards.net/thread/89/wip-meleehd-auto-submission-script?page=1&scrollTo=442
+For more information, please visit http://meleehd.boards.net/thread/89/wip-meleehd-auto-submission-script
 
 Things completed so far:
 
