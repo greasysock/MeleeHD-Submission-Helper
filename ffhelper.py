@@ -31,10 +31,10 @@ def env(profile):
 				mdir = file
 				status = 1
 		if status != 1:
-			print('Profile Creation Failed.')
+			print('Profile \'%s\' creation failed.' % profile)
 			exit()
 		fdir = (fd + '/' + mdir)
 	elif status == 1:
-		print('Profile detected, continuing.')
+		print('Profile \'%\' detected, continuing.' % mdir)
 		fdir = (fd + '/' + mdir)
 	return fdir
