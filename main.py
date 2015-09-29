@@ -31,9 +31,13 @@ print da_token
 print inkscapeex
 print db_token
 updir = 'upload/'
+if not os.path.exists(updir): os.makedirs(updir)
 bldir = 'packedtextures/'
+if not os.path.exists(bldir): os.makedirs(bldir)
 texres = 'sdtextures/'
+if not os.path.exists(texres): os.makedirs(texres)
 comdir = 'submitted/'
+if not os.path.exists(comdir): os.makedirs(comdir)
 envi = ffhelper.env('default')
 browser = Browser('firefox', profile = envi)
 def dirprep(img,name):
