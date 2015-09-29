@@ -46,6 +46,7 @@ def glinkget(devid, access_token):
 				if test == True:
 					link = x
 	return link
+#a combination of all methods above, only returning a direct link.
 def uppub(t,dec,img, access_token):
 	itemid = upload(t,dec,img, access_token)
 	devid = publish(itemid, access_token)
