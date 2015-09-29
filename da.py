@@ -2,6 +2,9 @@ import requests
 import simplejson as json
 import urllib
 
+#deviantart gallary id can be found here http://www.deviantart.com/developers/console/gallery/gallery_folders/
+gallery = 'F6004F98-1DAC-7805-065D-0319E61D5E3B'
+
 site = 'https://www.deviantart.com/api/v1/oauth2'
 result = None
 def test(access_token):
