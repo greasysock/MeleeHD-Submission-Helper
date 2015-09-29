@@ -15,6 +15,7 @@ def test(access_token):
 	result = r.json()
 	b = result.get('status')
 	return b
+#t = title, dec = description
 def upload(t,dec,img, access_token):
 	f = open(img, 'rb')
 	s = site + '/stash/submit'
