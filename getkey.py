@@ -3,8 +3,14 @@ from uuid import uuid4
 import requests
 import requests.auth
 import urllib
-CLIENT_ID = ''
-CLIENT_SECRET = ''
+import json
+#This script is used to get access tokens from deviantart, to get this working, you must fill out Client Id and Client Secret in conf.json with your own values via creating a new application at http://deviantart.com/developers
+#This is only a temporary solution until I'm finished developing the main script, a solution to this would be to run a dedicated server to hand out access tokens.
+conf = 'conf.json'
+with open(conf) as data_file:    
+	data = json.load(data_file)
+	CLIENT_ID = data['getkey.py'][0]['Client Id']
+	CLIENT_SECRET = data['getkey.py'][1]['Client Secret']
 REDIRECT_URI = "http://127.0.0.1:5000/da_callback"
 
 app = Flask(__name__)
@@ -38,6 +44,11 @@ def da_callback():
         abort(403)
     code = request.args.get('code')
     access_token = get_token(code)
+    with open(conf) as data_file:    
+        data = json.load(data_file)
+    data['deviantart']['accesstoken'] = access_token
+    with open(conf, 'w') as f:
+        json.dump(data, f, sort_keys = True, indent = 4,ensure_ascii=False)
     return access_token
 
 def get_token(code):
