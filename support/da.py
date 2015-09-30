@@ -1,12 +1,17 @@
 import requests
 import simplejson as json
 import urllib
-from support import conf
+from support import conf, da_access_token_qc
 ###This is a deviantArt api interpreter, it is what handles all deviantArt related requests in main.py. Most functions are self explanatory.
-access_token,refresh_token = conf.da_token()
 #deviantart gallery id can be found here http://www.deviantart.com/developers/console/gallery/gallery_folders/
 site = 'https://www.deviantart.com/api/v1/oauth2'
 result = None
+
+#ensures quality of access token.
+access_token = None
+refresh_token = None
+#manages access token for da.py session. Ensures a working access_token before continuing.
+access_token = da_access_token_qc.main()
 #tests an access token for its validity.
 def test():
 	s = site + '/placebo'
@@ -15,25 +20,6 @@ def test():
 	result = r.json()
 	access_token_status = result.get('status')
 	return access_token_status
-#Refreshes da access token
-def keyrefresh():
-	CLIENT_ID, CLIENT_SECRET = conf.da_client()
-	client_auth = requests.auth.HTTPBasicAuth(CLIENT_ID, CLIENT_SECRET)
-	post_data = {"grant_type": "refresh_token", "refresh_token": refresh_token}
-	response = requests.post("https://www.deviantart.com/oauth2/token", auth=client_auth, data=post_data)
-	parsed_json = response.json()
-	if parsed_json['status'] == 'success':
-		configuration = 'conf.json'
-		with open(configuration) as data_file:    
-			data = json.load(data_file)
-		data['deviantart']['accesstoken'] = parsed_json['access_token']
-		data['deviantart']['refreshtoken'] = parsed_json['refresh_token']
-		with open(configuration, 'w') as f:
-			json.dump(data, f, sort_keys = True, indent = 4,ensure_ascii=False)
-		global access_token, refresh_token
-		access_token,refresh_token = conf.da_token()
-	return parsed_json['status']
-#Finds a gallary id from a gallary name.
 def galleryfind(gallery_name):
 	s = site + '/gallery/folders?access_token=%s' % access_token
 	r = requests.post(s)
