@@ -148,7 +148,6 @@ for x in uploads:
 		pass
 	#If the upload candidate isn't an .ai/.pdf/.svg upload will be halted.
 	elif a == '.png':
-		pass
 		continue
 	else:
 		print('Filetype \'%s\' not supported. Only .ai, .svg, and .pdf files are supported.')
