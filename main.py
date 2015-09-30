@@ -14,7 +14,6 @@ conf = 'conf.json'
 #configuration parameter checker.
 with open(conf) as data_file:    
 	data = json.load(data_file)
-	da_token = data['deviantart']['accesstoken']
 	if platform.system() == 'Windows':
 		inkscapeex = data['inkscape'][0]['winexe']
 	elif platform.system() == 'Linux':
@@ -83,13 +82,13 @@ def dbupload(name):
 #Handles uploading sd/hd texture to deviantArt, only returning src url.
 def daupload(img, name, aname):
 	#tests for a valid da token.
-	test = da.test(da_token)
+	test = da.test()
 	if test == 'error':
 		print('deviantArt Token Invalid.')
 		exit()
 	im = bldir + name + '/' + aname
 	dec = 'Official MeleeHD texture submission. MeleeHD is a community texutre project, our official goal is to restore Nintendo\'s \'Super Smash Bros Melee\' with hires textures to be as close to the original as possible, if you want to know more about this project or want to get involved, send me a message, visit the official forums http://www.meleehd.boards.net, or check out a reddit post about the project https://www.reddit.com/r/SSBM/comments/3fl61i/melee_hd_wip/'
-	imglink, weblink = da.uppub(aname,dec,im,da_token)
+	imglink, weblink = da.uppub(aname,dec,im)
 	return imglink, weblink
 #Directs user to post thread, and prompts user to login if not already logged.
 def pblogin():
