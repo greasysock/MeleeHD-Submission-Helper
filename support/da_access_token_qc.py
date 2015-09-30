@@ -30,7 +30,7 @@ def keyrefresh():
 		global access_token
 		access_token,refresh_token = conf.da_token()
 	return parsed_json['status']
-#Finds a gallary id from a gallary name.
+#Runs through testing the access token to refreshing it if it does turn out to be bad.
 def main():
 	testresult = test()
 	if testresult == 'success':
