@@ -52,4 +52,4 @@ def uppub(t,dec,img, access_token):
 	stash_id = upload(t,dec,img, access_token)
 	deviation_id = publish(stash_id, access_token)
 	directlink = glinkget(deviation_id, access_token)
-	return directline
+	return directlink
