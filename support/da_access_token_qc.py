@@ -2,6 +2,7 @@ from support import conf
 import requests
 import requests.auth
 import json
+#Main purpose of this .py is to ensure the quality of access tokens.
 access_token, refresh_token = conf.da_token()
 site = 'https://www.deviantart.com/api/v1/oauth2'
 def test():
@@ -30,7 +31,7 @@ def keyrefresh():
 		global access_token
 		access_token,refresh_token = conf.da_token()
 	return parsed_json['status']
-#Runs through testing the access token to refreshing it if it does turn out to be bad.
+#Runs through testing the access token and refreshing it if it does turn out to be bad.
 def main():
 	testresult = test()
 	if testresult == 'success':
