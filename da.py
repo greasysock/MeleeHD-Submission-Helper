@@ -15,7 +15,7 @@ def test(access_token):
 	result = r.json()
 	access_token_status = result.get('status')
 	return access_token_status
-#t = title, dec = description
+#Uploads image to sta.sh, devaintarts side image host, and returns the image's id for publishing to deviantArt later.
 def upload(title,description,img, access_token):
 	loadedimg = open(img, 'rb')
 	s = site + '/stash/submit'
@@ -25,13 +25,15 @@ def upload(title,description,img, access_token):
 	result = r.json()
 	stash_id = result.get('itemid')
 	return stash_id
-def publish(id, access_token):
+#Publishes refrenced stash image id to deviantArt and returns it's deviation id for retreiving a direct link to deviation.
+def publish(stash_id, access_token):
 	s = site + '/stash/publish'
-	payload = {'galleryids': gallery, 'catpath': 'resources/textures/other','is_mature': 'no','agree_tos': 'yes','agree_submission':'yes','access_token': access_token, 'itemid': id, 'allow_free_download': 'yes'}
+	payload = {'galleryids': gallery, 'catpath': 'resources/textures/other','is_mature': 'no','agree_tos': 'yes','agree_submission':'yes','access_token': access_token, 'itemid': stash_id, 'allow_free_download': 'yes'}
 	r = requests.post(s, data = payload)
 	result = r.json()
 	deviation_id = result.get('deviationid')
 	return deviation_id
+#Uses deviation id to retreive image link.
 def glinkget(deviation_id, access_token):
 	link = None
 	s = site + '/deviation/%s?access_token=%s' % (deviation_id, access_token)
@@ -48,7 +50,7 @@ def glinkget(deviation_id, access_token):
 				if test == True:
 					directlink = x
 	return directlink
-#a combination of all methods above, only returning a direct link.
+#Combination of all methods above, returning a direct link.
 def uppub(t,dec,img, access_token):
 	stash_id = upload(t,dec,img, access_token)
 	deviation_id = publish(stash_id, access_token)
