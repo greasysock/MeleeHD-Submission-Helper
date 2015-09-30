@@ -1,14 +1,32 @@
 {
- "dropbox":[
-         {"enabled":"false"},
-         {"accesstoken":"put access token here"}
-		],
-"deviantart":
-         {"accesstoken":"put access token here"},
-"inkscape":[
-         {"winexe":"\"C:\\Program Files\\Inkscape\\inkscape.exe\""},
-         {"linux":"inkscape"}
-		],
-"experimental":
-         {"autosubmit":"false"}
+    "deviantart": {
+        "accesstoken": ""
+    }, 
+    "dropbox": [
+        {
+            "enabled": "false"
+        }, 
+        {
+            "accesstoken": ""
+        }
+    ], 
+    "experimental": {
+        "autosubmit": "false"
+    }, 
+    "getkey.py": [
+        {
+            "Client Id": ""
+        }, 
+        {
+            "Client Secret": ""
+        }
+    ], 
+    "inkscape": [
+        {
+            "winexe": "\"C:\\Program Files\\Inkscape\\inkscape.exe\""
+        }, 
+        {
+            "linux": "inkscape"
+        }
+    ]
 }

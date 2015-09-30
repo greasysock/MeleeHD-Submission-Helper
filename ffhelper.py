@@ -1,6 +1,6 @@
 import os
 import platform
-
+#Finds specified firefox profile, in our case 'default', and if it cannot find a profile named default, it creates a new one named default.
 def env(profile):
 	uos = platform.system()
 	mes = 'OS Detected: %s' % uos
@@ -16,7 +16,7 @@ def env(profile):
 		ff = 'firefox'
 	else:
 		print(mes)
-		print('OS Not Compatible, contact @UncleIroh to fix this.')
+		print('OS Not Compatible.')
 		exit()
 	status = 0
 	for file in os.listdir(fd):
@@ -31,10 +31,10 @@ def env(profile):
 				mdir = file
 				status = 1
 		if status != 1:
-			print('Profile Creation Failed.')
+			print('Profile \'%s\' creation failed.' % profile)
 			exit()
 		fdir = (fd + '/' + mdir)
 	elif status == 1:
-		print('Profile detected, continuing.')
+		print('Profile \'%s\' detected, continuing.' % mdir)
 		fdir = (fd + '/' + mdir)
 	return fdir
