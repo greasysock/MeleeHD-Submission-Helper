@@ -58,11 +58,16 @@ def svgprep(img,name):
 	print('Creating .svg from \'%s\' via inkscape.' % img)
 	path = bldir + name
 	os.system("%s --file=%s/%s --export-plain-svg=%s/%s.svg" % (inkscapeex,path,img,path,name))
-#Creates a .png from .svg via inkscape.
+#Creates a .png from .svg via inkscape if there isn't already a .png.
 def pngprep(img,name):
-	print('Creating .png from \'%s\' via inkscape.' % img)
 	path = bldir + name
-	os.system("%s --file=%s/%s --export-png=%s/%s.png" % (inkscapeex,path,name + '.svg',path,name))
+	if os.path.isfile('%s%s.png' % (updir, name)) == true:
+		prerenderpng = '%s%s.png' % (updir, name)
+		print('PNG detected.')
+		shutil.copy(prerenderpng, path + '/%s.png' % name)
+	else:
+		print('PNG not detected, creating .png from \'%s\' via inkscape.' % img)
+		os.system("%s --file=%s/%s --export-png=%s/%s.png" % (inkscapeex,path,name + '.svg',path,name))
 #Handles uploading texture directory to dropbox.
 def dbupload(name):
 	upload = bldir + name
@@ -139,11 +144,14 @@ for x in uploads:
 		svgprep(x, name)
 	elif a == '.svg':
 		dirprep(x, name)
-		print('pass')
+		pass
 	#If the upload candidate isn't an .ai/.pdf/.svg upload will be halted.
+	elif a == '.png':
+		pass
+		continue
 	else:
 		print('Filetype \'%s\' not supported. Only .ai, .svg, and .pdf files are supported.')
-		exit()
+		continue
 	#render png via inkscape
 	pngprep(x, name)
 	dim = name.split('_')
