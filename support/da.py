@@ -1,7 +1,7 @@
 import requests
 import simplejson as json
 import urllib
-import conf
+from support import conf
 ###This is a deviantArt api interpreter, it is what handles all deviantArt related requests in main.py. Most functions are self explanatory.
 access_token = conf.da_token()
 #deviantart gallery id can be found here http://www.deviantart.com/developers/console/gallery/gallery_folders/
