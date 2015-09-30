@@ -43,10 +43,11 @@ def da_callback():
         # Uh-oh, this request wasn't started by us!
         abort(403)
     code = request.args.get('code')
-    access_token = get_token(code)
+    access_token,refresh_token = get_token(code)
     with open(conf) as data_file:    
         data = json.load(data_file)
     data['deviantart']['accesstoken'] = access_token
+    data['deviantart']['refreshtoken'] = refresh_token
     with open(conf, 'w') as f:
         json.dump(data, f, sort_keys = True, indent = 4,ensure_ascii=False)
     return access_token
@@ -60,7 +61,7 @@ def get_token(code):
                              auth=client_auth,
                              data=post_data)
     token_json = response.json()
-    return token_json["access_token"]
+    return token_json["access_token"], token_json["refresh_token"]
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
