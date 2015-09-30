@@ -35,6 +35,6 @@ def env(profile):
 			exit()
 		fdir = (fd + '/' + mdir)
 	elif status == 1:
-		print('Profile \'%\' detected, continuing.' % mdir)
+		print('Profile \'%s\' detected, continuing.' % mdir)
 		fdir = (fd + '/' + mdir)
 	return fdir
