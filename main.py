@@ -41,9 +41,10 @@ if not os.path.exists(texres): os.makedirs(texres)
 #This directory stores what was in the updir once it has been processed
 comdir = 'submitted/'
 if not os.path.exists(comdir): os.makedirs(comdir)
-envi = ffhelper.env('default')
 #opens firefox to a blank page before starting submit loop
-browser = Browser('firefox', profile = envi)
+if autosubmit == True:
+	envi = ffhelper.env('default')
+	browser = Browser('firefox', profile = envi)
 #Creates and prepares a directory for the texture, including finding the matching sd texture.
 def dirprep(img,name):
 	sdsrc = texres + name + '.png'
@@ -203,13 +204,13 @@ SVG:
 
 Post created in %s seconds''' % (str(xdim),str(ydim),dasd,str(hdxdim),str(hdydim),str(hdxdim),str(hdydim),dahd,svg,dblink,time.time()-start)
 	#prepare browser for forum post
-	pblogin()
 	#parse paragraph to it's final form to be injected via javascript.
 	final = forumhelp(paragraph)
 	#fill subject line of forum.
-	browser.fill('subject', nname)
 	#test for autosubmit status. copying bbcode to clipboard is not implemented yet, so if this is disabled, it pretty much makes the script useless.
 	if autosubmit == True:
+		pblogin()
+		browser.fill('subject', nname)
 		with browser.get_iframe(2) as iframe:
 			iframe.execute_script("""
 
