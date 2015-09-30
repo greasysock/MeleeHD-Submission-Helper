@@ -7,6 +7,7 @@ from splinter import Browser
 import ffhelper
 import time
 import platform
+import json
 
 db_token = None
 conf = 'conf.json'
