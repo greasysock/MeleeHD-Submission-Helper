@@ -13,8 +13,8 @@ def test(access_token):
 	payload = {'access_token': access_token}
 	r = requests.post(s, data = payload)
 	result = r.json()
-	b = result.get('status')
-	return b
+	access_token_status = result.get('status')
+	return access_token_status
 #t = title, dec = description
 def upload(t,dec,img, access_token):
 	f = open(img, 'rb')
@@ -23,18 +23,18 @@ def upload(t,dec,img, access_token):
 	ph = {'img' : f}
 	r = requests.post(s, data = payload, files = ph)
 	result = r.json()
-	itemid = result.get('itemid')
-	return itemid
+	stash_id = result.get('itemid')
+	return stash_id
 def publish(id, access_token):
 	s = site + '/stash/publish'
 	payload = {'galleryids': gallery, 'catpath': 'resources/textures/other','is_mature': 'no','agree_tos': 'yes','agree_submission':'yes','access_token': access_token, 'itemid': id, 'allow_free_download': 'yes'}
 	r = requests.post(s, data = payload)
 	result = r.json()
-	devid = result.get('deviationid')
-	return devid
-def glinkget(devid, access_token):
+	deviation_id = result.get('deviationid')
+	return deviation_id
+def glinkget(deviation_id, access_token):
 	link = None
-	s = site + '/deviation/%s?access_token=%s' % (devid, access_token)
+	s = site + '/deviation/%s?access_token=%s' % (deviation_id, access_token)
 	r = requests.post(s)
 	result = r.text
 	parsed_json = json.loads(result)
@@ -45,11 +45,11 @@ def glinkget(devid, access_token):
 			for x in list:
 				test = '.deviantart.net/' in x
 				if test == True:
-					link = x
-	return link
+					directlink = x
+	return directlink
 #a combination of all methods above, only returning a direct link.
 def uppub(t,dec,img, access_token):
-	itemid = upload(t,dec,img, access_token)
-	devid = publish(itemid, access_token)
-	imlink = glinkget(devid, access_token)
-	return imlink
+	stash_id = upload(t,dec,img, access_token)
+	deviation_id = publish(stash_id, access_token)
+	directlink = glinkget(deviation_id, access_token)
+	return directline
