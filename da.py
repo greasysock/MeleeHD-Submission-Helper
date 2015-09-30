@@ -16,12 +16,12 @@ def test(access_token):
 	access_token_status = result.get('status')
 	return access_token_status
 #t = title, dec = description
-def upload(t,dec,img, access_token):
-	f = open(img, 'rb')
+def upload(title,description,img, access_token):
+	loadedimg = open(img, 'rb')
 	s = site + '/stash/submit'
-	payload = {'access_token': access_token,'stack': 'test','title': t, 'artist_comments': dec}
-	ph = {'img' : f}
-	r = requests.post(s, data = payload, files = ph)
+	payload = {'access_token': access_token,'stack': 'MeleeHD','title': title, 'artist_comments': description}
+	imagepayload = {'img' : loadedimg}
+	r = requests.post(s, data = payload, files = imagepayload)
 	result = r.json()
 	stash_id = result.get('itemid')
 	return stash_id
@@ -38,6 +38,7 @@ def glinkget(deviation_id, access_token):
 	r = requests.post(s)
 	result = r.text
 	parsed_json = json.loads(result)
+	#parses respnse for direct link. This is only done this way because I didn't know how to properly naviate .json files at the time:|
 	for keys,values in parsed_json.iteritems():
 		if keys == 'content':
 			jk = str(values)
