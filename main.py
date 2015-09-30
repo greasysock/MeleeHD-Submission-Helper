@@ -88,8 +88,8 @@ def daupload(img, name, aname):
 		exit()
 	im = bldir + name + '/' + aname
 	dec = 'Official MeleeHD texture submission. MeleeHD is a community texutre project, our official goal is to restore Nintendo\'s \'Super Smash Bros Melee\' with hires textures to be as close to the original as possible, if you want to know more about this project or want to get involved, send me a message, visit the official forums http://www.meleehd.boards.net, or check out a reddit post about the project https://www.reddit.com/r/SSBM/comments/3fl61i/melee_hd_wip/'
-	imglink = da.uppub(aname,dec,im,da_token)
-	return imglink
+	imglink, weblink = da.uppub(aname,dec,im,da_token)
+	return imglink, weblink
 #Directs user to post thread, and prompts user to login if not already logged.
 def pblogin():
 	posturl = 'http://meleehd.boards.net/thread/new/3'
@@ -180,8 +180,8 @@ for x in uploads:
 	else:
 		dblink = None
 	#upload sd, and hd textures to deviantArt and retrieve links.
-	dahd = daupload(x, name, nname)
-	dasd = daupload(x, name, sname)
+	dahd,hddeviantart_url = daupload(x, name, nname)
+	dasd,sdheviantart_url = daupload(x, name, sname)
 	#prepare svg for forum boxy.
 	svglocation = bldir + name + '/'+ name +'.svg'
 	svg = svghelp(svglocation)
