@@ -5,7 +5,6 @@ import conf
 ###This is a deviantArt api interpreter, it is what handles all deviantArt related requests in main.py. Most functions are self explanatory.
 access_token = conf.da_token()
 #deviantart gallery id can be found here http://www.deviantart.com/developers/console/gallery/gallery_folders/
-#I will implement a gallery id retreiver in the future, this is just temporary solution.
 site = 'https://www.deviantart.com/api/v1/oauth2'
 result = None
 #tests an access token for its validity.
@@ -16,7 +15,7 @@ def test():
 	result = r.json()
 	access_token_status = result.get('status')
 	return access_token_status
-#Finds a gallary a gallary id from a gallary name.
+#Finds a gallary id from a gallary name.
 def galleryfind(gallery_name):
 	s = site + '/gallery/folders?access_token=%s' % access_token
 	r = requests.post(s)
