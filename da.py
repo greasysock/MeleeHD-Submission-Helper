@@ -16,7 +16,7 @@ def test():
 	result = r.json()
 	access_token_status = result.get('status')
 	return access_token_status
-#Uploads image to sta.sh, devaintart's image host, and returns the image's id for publishing to deviantArt later.
+#Finds a gallary a gallary id from a gallary name.
 def galleryfind(gallery_name):
 	s = site + '/gallery/folders?access_token=%s' % access_token
 	r = requests.post(s)
@@ -29,6 +29,7 @@ def galleryfind(gallery_name):
 			folderid = result['results'][x-1]['folderid']
 			break
 	return folderid
+#Uploads image to sta.sh, devaintart's image host, and returns the image's id for publishing to deviantArt later.
 def upload(title,description,img):
 	loadedimg = open(img, 'rb')
 	s = site + '/stash/submit'
@@ -48,6 +49,7 @@ def publish(stash_id):
 	deviation_id = result.get('deviationid')
 	deviation_link = result.get('url')
 	return deviation_id, deviation_link
+#Finds a user's profile name and creates a link to their profile
 def profile():
 	s = site + '/user/whoami?access_token=%s' % access_token
 	r = requests.post(s)
