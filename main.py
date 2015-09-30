@@ -97,6 +97,7 @@ def pblogin():
 		print('User not logged in.')
 		browser.click_link_by_text('Login')
 		a = 0
+		#starts loop to wait for user to login.
 		while(title != 'Create Thread | Melee HD'):
 			title = browser.title
 			a = a + 1
