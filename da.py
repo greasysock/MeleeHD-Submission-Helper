@@ -2,9 +2,10 @@ import requests
 import simplejson as json
 import urllib
 
+###This is a deviantArt api interpreter, it is what handles all deviantArt related requests in main.py. Most functions are self explanatory.
+
 #deviantart gallary id can be found here http://www.deviantart.com/developers/console/gallery/gallery_folders/
 gallery = 'F6004F98-1DAC-7805-065D-0319E61D5E3B'
-#this is a deviantArt api interpreter, it is what handles all deviantArt related requests in main.py. Most functions are self explanatory.
 site = 'https://www.deviantart.com/api/v1/oauth2'
 result = None
 #tests an access token for its validity.
@@ -15,7 +16,7 @@ def test(access_token):
 	result = r.json()
 	access_token_status = result.get('status')
 	return access_token_status
-#Uploads image to sta.sh, devaintarts side image host, and returns the image's id for publishing to deviantArt later.
+#Uploads image to sta.sh, devaintart's image host, and returns the image's id for publishing to deviantArt later.
 def upload(title,description,img, access_token):
 	loadedimg = open(img, 'rb')
 	s = site + '/stash/submit'
@@ -25,7 +26,7 @@ def upload(title,description,img, access_token):
 	result = r.json()
 	stash_id = result.get('itemid')
 	return stash_id
-#Publishes refrenced stash image id to deviantArt and returns it's deviation id for retreiving a direct link to deviation.
+#Publishes refrenced stash image id to deviantArt and returns it's deviation id.
 def publish(stash_id, access_token):
 	s = site + '/stash/publish'
 	payload = {'galleryids': gallery, 'catpath': 'resources/textures/other','is_mature': 'no','agree_tos': 'yes','agree_submission':'yes','access_token': access_token, 'itemid': stash_id, 'allow_free_download': 'yes'}
