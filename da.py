@@ -5,6 +5,7 @@ import urllib
 ###This is a deviantArt api interpreter, it is what handles all deviantArt related requests in main.py. Most functions are self explanatory.
 
 #deviantart gallary id can be found here http://www.deviantart.com/developers/console/gallery/gallery_folders/
+#I will implement a gallary id retreiver in the future, this is just temporary solution.
 gallery = 'F6004F98-1DAC-7805-065D-0319E61D5E3B'
 site = 'https://www.deviantart.com/api/v1/oauth2'
 result = None
