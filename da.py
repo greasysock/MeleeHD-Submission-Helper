@@ -41,7 +41,7 @@ def glinkget(deviation_id, access_token):
 	r = requests.post(s)
 	result = r.text
 	parsed_json = json.loads(result)
-	#parses respnse for direct link. This is only done this way because I didn't know how to properly naviate .json files at the time:|
+	#parses response for direct link. This is only done this way because I didn't know how to properly naviate .json files at the time:|
 	for keys,values in parsed_json.iteritems():
 		if keys == 'content':
 			jk = str(values)
