@@ -7,6 +7,7 @@
 - Inkscape
 
 - Python 2.7 and Modules: splinter, requests, flask, simplejson, dropbox
+  - example on how to install missing modules: ```pip install splinter'''
 
 For more information, please visit http://meleehd.boards.net/thread/89/wip-meleehd-auto-submission-script
 
@@ -44,7 +45,7 @@ Error handling.
 
 ###How it works: 
 
-1. Generate a new devaintArt access token by starting getkey.py ```python getkey.py``` and opening up 127.0.0.1:5000 in your browser and go through the steps of autheticating the application through deviantArt, the access token will save to **conf.json** automatically.
+1. Generate a new devaintArt access token by starting getkey.py ```python getkey.py``` and opening up 127.0.0.1:5000 in your browser, go through the steps of autheticating the application through deviantArt. Once the token is generated, it will automatically save to conf.json, along with it's refresh token.
 2. Start main.py ```python main.py```, the script will create folders: **upload**,**submitted**, **packedtextures**, and **sdtextures**
 3. After the script is finished setting up, all that needs to be done now is to fill **sdtextures** with a texture dump.
  * Go here and download texture source https://mega.nz/#F!TYsjHBQC!R8cxMQ68yseVBf5Luf2gCA
