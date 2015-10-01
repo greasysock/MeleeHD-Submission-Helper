@@ -49,6 +49,7 @@ Error handling.
 3. After the script is finished setting up, all that needs to be done now is to fill **sdtextures** with a texture dump.
  * Go here and download texture source https://mega.nz/#F!TYsjHBQC!R8cxMQ68yseVBf5Luf2gCA
 4. Now that everything is setup, you can place either a *.pdf*,*.svg*, or an *.ai* in the **submit** folder with the apropriate name, and start main.py **python main.py** will start processing the textures.
- * Note: putting a *.png* in **submit** with the same texture name as an *.ai*/*.pdf*/*.svg* will override inkscape and submit that texture instead.
+  * Example: 'tex1_32x36_11ad122fc65442bc_2.ai' would be the correct name to be processed
+  * Note: putting a *.png* in **submit** with the same texture name as an *.ai*/*.pdf*/*.svg* will override inkscape and submit that texture instead.
  * All processed textures will be moved to **complete**
 5. After it's done processing, copy the contents of */packedtextures/texturename/texturename_bbctemp.txt* into a texture post on Melee HD
