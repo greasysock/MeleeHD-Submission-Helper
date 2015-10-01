@@ -48,7 +48,7 @@ Error handling.
 
 ###How to use it: 
 
-1. Generate a new devaintArt access token by starting getkey.py ```python getkey.py``` and opening up 127.0.0.1:5000 in your browser, go through the steps of autheticating the application through deviantArt. Once the token is generated, it will automatically save to conf.json, along with it's refresh token.
+1. Generate a new devaintArt access token by starting getkey.py ```python getkey.py``` and opening up [127.0.0.1:5000](http://127.0.0.1:5000) in your browser, go through the steps of autheticating the application through deviantArt. Once the token is generated, it will automatically save to conf.json, along with it's refresh token.
 2. Start main.py ```python main.py```, the script will create folders: **upload**,**submitted**, **packedtextures**, and **sdtextures**
 3. After the script is finished setting up, all that needs to be done now is to fill **sdtextures** with a texture dump.
  * Go here and download texture source https://mega.nz/#F!TYsjHBQC!R8cxMQ68yseVBf5Luf2gCA
