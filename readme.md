@@ -3,7 +3,9 @@
 ###Requirements:
 
 *Firefox - Only requred if testing autosubmit feature (which is currently broken)
+
 *Inkscape
+
 *Python 2.7 and Modules: splinter, requests, flask, simplejson, dropbox
 
 For more information, please visit http://meleehd.boards.net/thread/89/wip-meleehd-auto-submission-script
@@ -22,19 +24,24 @@ Linux and Windows support.
 
 ###Things that need to be completed:
 
-
-Auto Forum Submission (WIP) - It's working about 75% of the time at the moment, due to unpredictable element changes in the page caused by advertisments, it can sometimes fill ad space rather than the forum.
-
-deviantArt access code creation and refreshing. - All access codes used in deviantArt must be renewed every 30 minutes.
-
 FileOptimizer Implementation.
 
 Error handling.
 
-Save built post as bbcode.
+###What you need to have before you start:
 
+1. deviantArt client id and client secret.
 
-###How it'll work: 
+2. Dropbox access token. 
 
-You'd put either either an ,.ai, .pdf, or .svg in a folder name 'submit' named as the texture you want to submit, you can put as many textures you want in the folder. Once you start the script, it'll create an .svg from the .ai or .pdf if you provided one, and from the .svg. it'll render a .png, and then it'll go through a folder named 'sdtextures' which has a very large dump of sd textures in it provided by iwishiwassleeping and it grabs the sd version of the texture, puts all the files in a folder named 'packeddirectory/texture_name' uploads the sd/hd version to deviantArt, bulds the post based on it's bbcode, and saves the post to a file in the packed texture directory, makes a post for injecting it into the forum page via javascript, logs into meleehd/load submit page, fills the page, and finally submits the texture. You also optionally will be able to upload to dropbox and provide a project files link, but this will not be a requirement or necessary in most cases.
+  *https://www.dropbox.com/developers/apps
 
+  *create a new app
+  
+  *click on the app
+  
+  *select 'Generate access token'
+
+###How it works: 
+
+*Start main.py with 'python main.py' while in the root directory of the script will create folders: **upload**,**submitted**, **packedtextures**, and **sdtextures**
