@@ -1,4 +1,7 @@
+###What it does:
 
+MeleeHD Submission Helper script greatly reduces the time and effort required to submit texture posts to melee hd, while at the same time ensuring each post you make is formatted correctly.
+It takes a provided texture vectore, *.pdf* *.ai* *.svg*, and converts into a *.png* and *.svg* if necessary, optionally uploads everything to dropbox, uploads an sd and hd version of the texture to deviantart and then finally creates a bbcode template to paste into a new meleehd post.
 
 ###Requirements:
 
@@ -43,7 +46,7 @@ Error handling.
   3. Copy that token into **conf.json** dropbox, accesstoken = "access token here"
   4. Enable dropbox in **conf.json** dropbox, enabled = "true"
 
-###How it works: 
+###How to use it: 
 
 1. Generate a new devaintArt access token by starting getkey.py ```python getkey.py``` and opening up 127.0.0.1:5000 in your browser, go through the steps of autheticating the application through deviantArt. Once the token is generated, it will automatically save to conf.json, along with it's refresh token.
 2. Start main.py ```python main.py```, the script will create folders: **upload**,**submitted**, **packedtextures**, and **sdtextures**
