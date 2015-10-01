@@ -1,12 +1,8 @@
-import os
-import shutil
+import os, shutil,dropbox, time, platform, json
 from subprocess import call
-import dropbox
 from splinter import Browser
-from support import ffhelper, da
-import time
-import platform
-import json
+from support import ffhelper, da, template
+from collections import defaultdict
 
 db_token = None
 conf = 'conf.json'
@@ -45,6 +41,7 @@ if autosubmit == True:
 	browser = Browser('firefox', profile = envi)
 #Creates and prepares a directory for the texture, including finding the matching sd texture.
 def dirprep(img,name):
+	print('Preparing directory for texture:\'%s\'' % name)
 	sdsrc = texres + name + '.png'
 	source = updir + img
 	path = bldir + name
@@ -52,6 +49,7 @@ def dirprep(img,name):
 	shutil.copy(source, path)
 	print('Finding sd texture in sd texture source.')
 	shutil.copy(sdsrc, path + '/sd_%s.png' % name)
+	shutil.move(source, comdir+img)
 #Creates an .svg from provided .ai/.pdf via inkscape.
 def svgprep(img,name):
 	print('Creating .svg from \'%s\' via inkscape.' % img)
@@ -60,10 +58,11 @@ def svgprep(img,name):
 #Creates a .png from .svg via inkscape if there isn't already a .png.
 def pngprep(img,name):
 	path = bldir + name
-	if os.path.isfile('%s%s.png' % (updir, name)) == true:
+	if os.path.isfile('%s%s.png' % (updir, name)) == True:
 		prerenderpng = '%s%s.png' % (updir, name)
 		print('PNG detected.')
 		shutil.copy(prerenderpng, path + '/%s.png' % name)
+		shutil.move(prerenderpng, comdir+'%s.png' % name)
 	else:
 		print('PNG not detected, creating .png from \'%s\' via inkscape.' % img)
 		os.system("%s --file=%s/%s --export-png=%s/%s.png" % (inkscapeex,path,name + '.svg',path,name))
@@ -80,13 +79,8 @@ def dbupload(name):
 	return dburl
 #Handles uploading sd/hd texture to deviantArt, only returning src url.
 def daupload(img, name, aname):
-	#tests for a valid da token.
-	test = da.test()
-	if test == 'error':
-		print('deviantArt Token Invalid.')
-		exit()
 	im = bldir + name + '/' + aname
-	dec = 'Official MeleeHD texture submission. MeleeHD is a community texutre project, our official goal is to restore Nintendo\'s \'Super Smash Bros Melee\' with hires textures to be as close to the original as possible, if you want to know more about this project or want to get involved, send me a message, visit the official forums http://www.meleehd.boards.net, or check out a reddit post about the project https://www.reddit.com/r/SSBM/comments/3fl61i/melee_hd_wip/'
+	dec = 'Official MeleeHD texture submission. MeleeHD is a community texture project, our official goal is to restore Nintendo\'s \'Super Smash Bros Melee\' with hires textures to be as close to the original as possible, if you want to know more about this project or want to get involved, send me a message, visit the official forums http://www.meleehd.boards.net, or check out a reddit post about the project https://www.reddit.com/r/SSBM/comments/3fl61i/melee_hd_wip/'
 	imglink, weblink = da.uppub(aname,dec,im)
 	return imglink, weblink
 #Directs user to post thread, and prompts user to login if not already logged.
@@ -107,7 +101,6 @@ def pblogin():
 			title = browser.title
 			a = a + 1
 			b = 'Waiting for user to login, to avoid this, login with firefox outside of script.' + '.' * a
-			print '{}\r'.format(b),
 			time.sleep(1)
 		ltestloop()
 #function only exists because I don't know how to otherwise make the login test restart to ensure the user is logged in.
@@ -133,7 +126,6 @@ for x in uploads:
 	name = os.path.splitext(x)[0]
 	extension = os.path.splitext(x)[1]
 	a = extension
-	print('Preparing directory for texture:\'%s\'' % name)
 	#tests for what type of file is attempting to be uploaded.
 	if a == '.ai':
 		dirprep(x, name)
@@ -179,32 +171,33 @@ for x in uploads:
 		dblink = None
 	#upload sd, and hd textures to deviantArt and retrieve links.
 	dahd,hddeviantart_url = daupload(x, name, nname)
-	dasd,sdheviantart_url = daupload(x, name, sname)
+	dasd,sddeviantart_url = daupload(x, name, sname)
 	#prepare svg for forum boxy.
 	svglocation = bldir + name + '/'+ name +'.svg'
 	svg = svghelp(svglocation)
 	#write out forum body
 	#note: to get % out, you need to put 2 %% as seen in the width parameter.
-	paragraph = '''Original Texture: %sx%s
-<div class="quote no_header"><div class="quote_body"><img alt="" src="%s" height"%s" width="%s" style="max-width:1600%%;">
-<div class="quote_clear"></div></div></div>HD Texture: %sx%s
-<div class="quote no_header"><div class="quote_body"><img alt="" src="%s" style="max-width:100%%;">
-<div class="quote_clear"></div></div></div>
-
-SVG:
-
-<code>%s</code>
-
-<a rel="nofollow" target="_blank" href="%s">Project Files
-
-</a>File size not optimized.
-
-Post created in %s seconds''' % (str(xdim),str(ydim),dasd,str(hdxdim),str(hdydim),str(hdxdim),str(hdydim),dahd,svg,dblink,time.time()-start)
+	svgfilesize = os.path.getsize(svglocation)
+	pngfilesize = os.path.getsize('%s%s/%s' % (bldir, name, nname))
+	l=lambda:defaultdict(l)
+	profilelink, username = da.profile()
+	texturedata = l()
+	texturedata['info'] = {'name':nname}
+	texturedata['texture']['sd'] = {'directlink':dasd,'dapage':sddeviantart_url,'x':str(xdim),'y':str(ydim)}
+	texturedata['texture']['hd'] = {'directlink':dahd,'dapage':hddeviantart_url,'x':str(hdxdim),'y':str(hdydim), 'pngsize': pngfilesize, 'svg':svg, 'svgsize':svgfilesize}
+	texturedata['deviantart'] = {'username':username,'profilelink':profilelink}
+	if dropbx == True:
+		texturedata['dropbox'] = {'project link':dblink}
+	texturesubmitdata = bldir+name+'/'+name+'_postdata.json'
+	with open(texturesubmitdata, 'w') as f:
+		json.dump(texturedata, f, sort_keys = False, indent = 4,ensure_ascii=False)
 	#prepare browser for forum post
 	#parse paragraph to it's final form to be injected via javascript.
-	final = forumhelp(paragraph)
 	#fill subject line of forum.
-	#test for autosubmit status. copying bbcode to clipboard is not implemented yet, so if this is disabled, it pretty much makes the script useless.
+	#test for autosubmit status.
+	bbcodesubmitdata = bldir+name+'/'+name+'_bbctemp.txt'
+	with open(bbcodesubmitdata, 'w') as f:
+		f.write(template.bbtemplate(texturedata))
 	if autosubmit == True:
 		pblogin()
 		browser.fill('subject', nname)
@@ -216,9 +209,9 @@ document.getElementsByTagName('body')[0].innerHTML = forumBody;
 
 """ % (final))
 	#test whether or not a new page with the texture name has been submitted before moving on, note that splinter does not automatically press submit at the moment, this will change in the future when the script is close to 100% accurate.
-	pagename = nname + ' | Melee HD'
-	pagetitle = browser.title
-	while(pagetitle != pagename):
+		pagename = nname + ' | Melee HD'
 		pagetitle = browser.title
-		time.sleep(1)
+		while(pagetitle != pagename):
+			pagetitle = browser.title
+			time.sleep(1)
 	

@@ -13,3 +13,12 @@ def da_client():
 		da_client_id = data['getkey.py'][0]['Client Id']
 		da_client_secret = data['getkey.py'][1]['Client Secret']
 	return da_client_id,da_client_secret
+def db_client():
+	with open(conf) as data_file:    
+		data = json.load(data_file)
+		db_status = data['dropbox'][0]['enabled']
+	if db_status == 'true':
+		status = True
+	else:
+		status = False
+	return status

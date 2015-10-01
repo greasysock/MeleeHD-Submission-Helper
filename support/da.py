@@ -44,7 +44,7 @@ def upload(title,description,img):
 	return stash_id
 #Publishes refrenced stash image id to deviantArt and returns it's deviation id.
 def publish(stash_id):
-	gallary = galleryfind('Melee HD Project')
+	gallery = galleryfind('Melee HD Project')
 	s = site + '/stash/publish'
 	payload = {'galleryids': gallery, 'catpath': 'resources/textures/other','is_mature': 'no','agree_tos': 'yes','agree_submission':'yes','access_token': access_token, 'itemid': stash_id, 'allow_free_download': 'yes'}
 	r = requests.post(s, data = payload)
@@ -79,7 +79,7 @@ def glinkget(deviation_id):
 	return directlink
 #Combination of all methods above, returning a direct link.
 def uppub(t,dec,img):
-	stash_id = upload(t,dec,img, access_token)
-	deviation_id, deviation_link = publish(stash_id, access_token)
-	directlink = glinkget(deviation_id, access_token)
+	stash_id = upload(t,dec,img)
+	deviation_id, deviation_link = publish(stash_id)
+	directlink = glinkget(deviation_id)
 	return directlink, deviation_link
