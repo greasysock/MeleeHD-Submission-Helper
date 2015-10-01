@@ -1,6 +1,6 @@
 ###What it does:
 
-MeleeHD Submission Helper script greatly reduces the time and effort required to submit texture posts to melee hd, while at the same time ensuring each post you make is formatted correctly.
+MeleeHD Submission Helper script *greatly* reduces the time and effort required to submit texture posts to melee hd while at the same time ensuring each post you make is formatted correctly.
 It takes a provided texture vector, *.pdf* *.ai* *.svg*, and converts it into a *.png* and *.svg* if necessary via inkscape, optionally uploads everything to dropbox, uploads an sd and hd version of the texture to deviantart and then finally creates a bbcode template to paste into a new meleehd post.
 
 ###Requirements:
