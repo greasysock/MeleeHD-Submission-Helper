@@ -7,7 +7,7 @@
 - Inkscape
 
 - Python 2.7 and Modules: splinter, requests, flask, simplejson, dropbox
-  - example on how to install missing modules: ```pip install splinter'''
+  - example on how to install missing modules: ```pip install splinter```
 
 For more information, please visit http://meleehd.boards.net/thread/89/wip-meleehd-auto-submission-script
 
