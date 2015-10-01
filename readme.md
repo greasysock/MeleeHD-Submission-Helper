@@ -60,3 +60,7 @@ Error handling.
   * Example: 'tex1_32x36_11ad122fc65442bc_2.ai' would be the correct name to be processed
   * Note: putting a *.png* in **submit** along with an *.ai*/*.pdf*/*.svg* will override inkscape and submit that texture instead of creating a new *.png*.
 5. After it's done processing, copy the contents of */packedtextures/texturename/texturename_bbctemp.txt* into a texture post on Melee HD
+
+####Post example:
+
+![alt text](http://pre11.deviantart.net/ad59/th/pre/i/2015/274/c/4/examplepost_by_ui_ssbm-d9blcmg.png "post example")
