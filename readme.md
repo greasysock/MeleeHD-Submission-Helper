@@ -33,7 +33,7 @@ Error handling.
 * deviantArt client id and client secret.
   1. Create a new application here: https://www.deviantart.com/developers/apps by selecting register application.
   2. In *OAuth2 Redirect URI Whitelist* enter: *http://127.0.0.1:5000/da_callback*
-  3. Copy and paste client id into conf.json getkey.py/Client Id = "client id here"
+  3. Copy and paste client id into **conf.json** getkey.py/Client Id = "client id here"
   4. Copy and paste client secret into **conf.json** getkey.py/Client Secret = "client secret here"
 
 * Dropbox access token (only required if you want to use dropbox.) 
