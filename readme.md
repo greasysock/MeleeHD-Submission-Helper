@@ -1,6 +1,6 @@
 #Disclaimer:
 
-#####**This script is not an official melee hd script. It has not been reviewed by any major member of the project. Even though I personally have no intentions of compromising your personal information, I am still very new to python, so I cannot ensure your privacy. You as the user have the responsibility to look over the code to ensure your own privacy.**
+#####**This script is not an official melee hd script. It has not been reviewed by any major member of the project. Even though I personally have no intentions of compromising your personal information, I am still very new to python, so I cannot ensure your privacy. You as the user are resposible for looking over the code to ensure your own privacy.**
 
 ###What it does:
 
