@@ -40,7 +40,7 @@ Error handling.
 
 * deviantArt client id and client secret.
   1. Create a new application here: https://www.deviantart.com/developers/apps by selecting register application.
-  2. In *OAuth2 Redirect URI Whitelist* enter: *http://127.0.0.1:5000/da_callback*
+  2. In *OAuth2 Redirect URI Whitelist* enter: ```http://127.0.0.1:5000/da_callback```
   3. Copy and paste client id into **conf.json** getkey.py/Client Id = "client id here"
   4. Copy and paste client secret into **conf.json** getkey.py/Client Secret = "client secret here"
 
@@ -52,7 +52,7 @@ Error handling.
 
 ###How to use it: 
 
-1. Generate a new devaintArt access token by starting getkey.py ```python getkey.py``` and opening up [127.0.0.1:5000](http://127.0.0.1:5000) in your browser, go through the steps of autheticating the application through deviantArt. Once the token is generated, it will automatically save to conf.json, along with it's refresh token.
+1. Generate a new devaintArt access token by starting getkey.py ```python getkey.py``` and opening up [127.0.0.1:5000](http://127.0.0.1:5000) in your browser, go through the steps of autheticating the application through deviantArt. The access token will save to conf.json, along with it's refresh token. Exit getkey.py
   - To exit getkey.py press ```ctr + c```
 2. Start main.py ```python main.py```, the script will create folders: **upload**,**submitted**, **packedtextures**, and **sdtextures**
 3. After the script is finished setting up, all that needs to be done now is to fill **sdtextures** with a texture dump.
