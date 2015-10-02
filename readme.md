@@ -9,7 +9,7 @@ It takes a provided texture vector, *.pdf* *.ai* *.svg*, and converts it into a 
 
 ###Requirements:
 
-- Firefox - Only requred if testing autosubmit feature (which is currently broken)
+- Firefox - Only required if testing autosubmit feature (which is currently broken)
 
 - Inkscape
 
