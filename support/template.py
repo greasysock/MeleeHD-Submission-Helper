@@ -34,7 +34,6 @@ Retexture
 Hovergrid
 
 [quote style="background:hovergrid;"][img src=\"{}\" style=\"max-width:{}px;\" width=\"100%%\"][img width=\"100%%\" src=\"{}\" style="max-width:{}px;"][/quote]
-
 SVG XML code
 
 [/font]
