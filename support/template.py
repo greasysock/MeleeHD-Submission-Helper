@@ -31,12 +31,11 @@ Unedited
 Retexture
 
 [quote][img width=\"100%%\" src=\"{}\" style=\"max-width:{}px;\"][/quote]
-Unedited (grid)
 
-[quote style=\"background:quotegrid;\"][img width=\"100%\" src=\"{}\" style=\"max-width:{}px;\"][/quote]
-Retexture (grid)
+Hovergrid
 
-[quote style=\"background:quotegrid;\"][img width=\"100%\" src=\"{}\" style=\"max-width:{}px;\"][/quote]
+[quote style="background:hovergrid;"][img src=\"{}\" style=\"max-width:{}px;\" width=\"100%%\"][img width=\"100%%\" src=\"{}\" style="max-width:{}px;"][/quote]
+
 SVG XML code
 
 [/font]
