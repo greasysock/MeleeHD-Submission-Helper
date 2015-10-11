@@ -1,5 +1,5 @@
 import requests
-import simplejson as json
+import json
 import urllib
 from support import conf, da_access_token_qc
 ###This is a deviantArt api interpreter, it is what handles all deviantArt related requests in main.py. Most functions are self explanatory.
