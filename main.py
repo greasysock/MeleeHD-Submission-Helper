@@ -1,5 +1,4 @@
-import os, shutil,dropbox, time, platform, json
-from subprocess import call
+import os, shutil,dropbox, time, platform, json, tempfile,zipfile
 from splinter import Browser
 from support import ffhelper, da, template
 from collections import defaultdict
@@ -16,7 +15,7 @@ with open(conf) as data_file:
 	if data['dropbox'][0]['enabled'] == 'true':
 		dropbx = True
 		db_token = data['dropbox'][1]['accesstoken']
-		client = dropbox.client.DropboxClient(db_token)
+		client = dropbox.Dropbox(db_token)
 	else:
 		dropbx = False
 	if data['experimental']['autosubmit'] == 'true':
@@ -29,9 +28,6 @@ if not os.path.exists(updir): os.makedirs(updir)
 #Directory where textures are packed
 bldir = 'packedtextures/'
 if not os.path.exists(bldir): os.makedirs(bldir)
-#Directory where sd texture source should be
-texres = 'sdtextures/'
-if not os.path.exists(texres): os.makedirs(texres)
 #This directory stores what was in the updir once it has been processed
 comdir = 'submitted/'
 if not os.path.exists(comdir): os.makedirs(comdir)
@@ -42,13 +38,16 @@ if autosubmit == True:
 #Creates and prepares a directory for the texture, including finding the matching sd texture.
 def dirprep(img,name):
 	print('Preparing directory for texture:\'%s\'' % name)
-	sdsrc = texres + name + '.png'
+	sdsrc = name + '.png'
 	source = updir + img
 	path = bldir + name
 	if not os.path.exists(path): os.makedirs(path)
 	shutil.copy(source, path)
 	print('Finding sd texture in sd texture source.')
-	shutil.copy(sdsrc, path + '/sd_%s.png' % name)
+	with zipfile.ZipFile('support/sdsource.zip', 'r') as myzip:
+		tempdir = tempfile.mkdtemp()
+		sdsource = myzip.extract(sdsrc,tempdir)
+		shutil.move('%s/%s.png'%(tempdir,name), '%s/sd_%s.png'%(path,name))
 	shutil.move(source, comdir+img)
 #Creates an .svg from provided .ai/.pdf via inkscape.
 def svgprep(img,name):
