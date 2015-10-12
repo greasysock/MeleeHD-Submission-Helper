@@ -54,10 +54,8 @@ Error handling.
 
 1. Generate a new devaintArt access token by starting getkey.py ```python getkey.py``` and opening up [127.0.0.1:5000](http://127.0.0.1:5000) in your browser, go through the steps of autheticating the application through deviantArt. The access token will save to conf.json, along with it's refresh token. Exit getkey.py
   - To exit getkey.py press ```ctr + c```
-2. Start main.py ```python main.py```, the script will create folders: **upload**,**submitted**, **packedtextures**, and **sdtextures**
-3. After the script is finished setting up, all that needs to be done now is to fill **sdtextures** with a texture dump.
- * Go here and download texture source https://mega.nz/#F!TYsjHBQC!R8cxMQ68yseVBf5Luf2gCA
-4. Now that everything is setup, you can place any number of*.pdf*,*.svg*, or *.ai* textures in the **submit** folder with the apropriate name, and start main.py ```python main.py```. All submited textures will be moved to **submitted**, the processed textures will be moved to **packedtextures**.
+2. Start main.py ```python main.py```, the script will create folders: **upload**,**submitted**, and **packedtextures**
+3. Now that everything is setup, you can place any number of*.pdf*,*.svg*, or *.ai* textures in the **submit** folder with the apropriate name, and start main.py ```python main.py```. All submited textures will be moved to **submitted**, the processed textures will be moved to **packedtextures**.
   * Example: 'tex1_32x36_11ad122fc65442bc_2.ai' would be the correct name to be processed
   * Note: putting a *.png* in **submit** along with an *.ai*/*.pdf*/*.svg* will override inkscape and submit that texture instead of creating a new *.png*.
 5. After it's done processing, copy the contents of */packedtextures/texturename/texturename_bbctemp.txt* into a texture post on Melee HD
