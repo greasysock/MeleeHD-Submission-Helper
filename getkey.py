@@ -1,16 +1,12 @@
 from flask import Flask, abort, request, redirect
 from uuid import uuid4
-import requests
-import requests.auth
-import urllib
-import json
+from support import conf
+import requests, requests.auth, urllib, json
+
 #This script is used to get access tokens from deviantart, to get this working, you must fill out Client Id and Client Secret in conf.json with your own values via creating a new application at http://deviantart.com/developers
 #This is only a temporary solution until I'm finished developing the main script, a solution to this would be to run a dedicated server to hand out access tokens.
 conf = 'conf.json'
-with open(conf) as data_file:    
-	data = json.load(data_file)
-	CLIENT_ID = data['getkey.py']['Client Id']
-	CLIENT_SECRET = data['getkey.py']['Client Secret']
+CLIENT_ID, CLIENT_SECRET = conf.da_client()
 REDIRECT_URI = "http://127.0.0.1:5000/da_callback"
 
 app = Flask(__name__)
