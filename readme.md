@@ -13,7 +13,7 @@ It takes a provided texture vector, *.pdf* *.ai* *.svg*, and converts it into a 
 
 - Inkscape
 
-- Python 2.7 and Modules: splinter, requests, flask, simplejson, dropbox
+- Python 3+ or 2.7 and Modules: splinter, requests, flask, simplejson, dropbox
   - how to install missing modules: ```pip install splinter```
 
 For more information, please visit http://meleehd.boards.net/thread/89/wip-meleehd-auto-submission-script
