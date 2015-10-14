@@ -5,7 +5,7 @@ if os.path.isfile(conf) == True:
     pass
 else:
     configprep = dict()
-    configprep['deviantart'] = {'accesstoken':'put da access token here', 'refreshtoken':'getkey.py generates refresh token'}
+    configprep['deviantart'] = {'accesstoken':'getkey.py generates access token', 'refreshtoken':'getkey.py generates refresh token'}
     configprep['dropbox'] = {'enabled':'false','accesstoken':'put db access token here'}
     configprep['experimental'] = {'autosubmit':'false'}
     configprep['getkey.py'] = {'Client Id':'Put da app id here','Client Secret':'Put da app secret here'}
@@ -23,13 +23,13 @@ def da_token():
 def da_client():
     with open(conf) as data_file:
         data = json.load(data_file)
-        da_client_id = data['getkey.py'][0]['Client Id']
-        da_client_secret = data['getkey.py'][1]['Client Secret']
+        da_client_id = data['getkey.py']['Client Id']
+        da_client_secret = data['getkey.py']['Client Secret']
     return da_client_id,da_client_secret
 def db_client():
     with open(conf) as data_file:
         data = json.load(data_file)
-        db_status = data['dropbox'][0]['enabled']
+        db_status = data['dropbox']['enabled']
     if db_status == 'true':
         status = True
     else:

@@ -77,6 +77,15 @@ def glinkget(deviation_id):
 				if test == True:
 					directlink = x
 	return directlink
+def stashlink(stash_id):
+	s = site + '/stash/item/{}?'.format(stash_id)
+	payload = {'access_token': access_token}
+	r = requests.post(s, data = payload)
+	result = r.json()
+	direct_url = []
+	for x in result['files']:
+		direct_url.append(x['src'])
+	return direct_url[-1]
 #Combination of all methods above, returning a direct link.
 def uppub(t,dec,img):
 	stash_id = upload(t,dec,img)

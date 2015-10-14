@@ -9,8 +9,8 @@ import json
 conf = 'conf.json'
 with open(conf) as data_file:    
 	data = json.load(data_file)
-	CLIENT_ID = data['getkey.py'][0]['Client Id']
-	CLIENT_SECRET = data['getkey.py'][1]['Client Secret']
+	CLIENT_ID = data['getkey.py']['Client Id']
+	CLIENT_SECRET = data['getkey.py']['Client Secret']
 REDIRECT_URI = "http://127.0.0.1:5000/da_callback"
 
 app = Flask(__name__)
@@ -25,7 +25,10 @@ def hompage():
               "state": state,
               "redirect_uri": REDIRECT_URI,
 			  "scope": "stash basic gallery browse"}
-    url = "https://www.deviantart.com/oauth2/authorize?" + urllib.urlencode(params)
+    try:
+        url = "https://www.deviantart.com/oauth2/authorize?" + urllib.parse.urlencode(params)
+    except:
+        url = "https://www.deviantart.com/oauth2/authorize?" + urllib.urlencode(params)
     return redirect(url, code=302)
 
 def save_created_state(state):
