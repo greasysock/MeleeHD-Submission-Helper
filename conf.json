@@ -3,7 +3,7 @@
         "Notify": "meleehd uncleiroh el linkmain111 gameonion"
     },
     "deviantart": {
-        "accesstoken": "getkey.py generate DA access token",
+        "accesstoken": "getkey.py generates DA access token",
         "refreshtoken": "getkey.py generates DA refresh token"
     },
     "dropbox": {
